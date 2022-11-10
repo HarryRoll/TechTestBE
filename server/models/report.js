@@ -7,10 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    orderreport: {
-      type: DataTypes.STRING(500),
-      allowNull: true
-    },
     tablenumber: {
       type: DataTypes.INTEGER,
       allowNull: true

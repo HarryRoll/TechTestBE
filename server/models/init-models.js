@@ -18,21 +18,25 @@ const sequelize = new Sequelize(
 const DataTypes = require("sequelize").DataTypes;
 const _drink = require("./drink");
 const _food = require("./food");
+const _orderlist = require("./orderlist");
 const _report = require("./report");
 
 function initModels(sequelize) {
   const drink = _drink(sequelize, DataTypes);
   const food = _food(sequelize, DataTypes);
+  const orderlist = _orderlist(sequelize, DataTypes);
   const report = _report(sequelize, DataTypes);
 
+  orderlist.belongsTo(report, { as: "id_report_report", foreignKey: "id_report"});
+  report.hasMany(orderlist, { as: "orderlists", foreignKey: "id_report"});
 
   return {
     drink,
     food,
+    orderlist,
     report,
   };
 }
-
 const models = initModels(sequelize)
 export default models
 export {sequelize}
